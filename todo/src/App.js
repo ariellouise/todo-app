@@ -25,12 +25,12 @@ function App() {
   );
 }
 
-const CarShower = () => {
+const CarShower = (props) => {
   return (
     <div>
-      <span style={{ fontWeight: "bold" }}>Make: </span>
+      <span style={{ fontWeight: "bold" }}>Make: </span> {props.make}
       <br />
-      <span style={{ fontWeight: "bold" }}>Model: </span>
+      <span style={{ fontWeight: "bold" }}>Model: </span> {props.model}
     </div>
   );
 };
