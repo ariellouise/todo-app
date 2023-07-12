@@ -32,8 +32,10 @@ const App = () => {
         <input
           type="text"
           name="task"
-          value={itemText}
+          value={itemText} //Connecting itemText to the state variable from line 9
           onChange={(event) => {
+            // When a user types in a value to change the text box, update what they have
+            //typed in into state
             setItemText(event.target.value);
           }}
         />
