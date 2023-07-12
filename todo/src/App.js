@@ -12,15 +12,24 @@ const App = () => {
   const addItem = (event) => {
     // #6 Prevent the page from refreshing
     event.preventDefault();
-    //#7 Get the item text out of the element's value in the form
-    const itemText = event.target.elements.task.value;
+
     //#8 We can't set items like a normal variable because it is a state variable.
     // Becuse of that we have to use the setItems functon from #2B.
-    //The paramater of the setItems function is the new value we would like in state.
+    //The parameter of the setItems function is the new value we would like in state.
     //In this case we are taking all the existing items, spread them out in a new
-    //array then put in the new itemText as another index in that array.
-    setItems([...items, itemText]);
+    //array then put in the new itemText (from state) as another index in that array.
+    setItems([...items, { taskName: itemText, done: false }]);
+    setItemText("");
     console.log(items);
+  };
+
+  const markAsDone = (taskIndex) => {
+    console.log(taskIndex);
+    const updatedTasks = items;
+    updatedTasks[taskIndex].done = true;
+    setItems(updatedTasks);
+
+    console.log(updatedTasks);
   };
 
   return (
@@ -32,7 +41,8 @@ const App = () => {
         <input
           type="text"
           name="task"
-          value={itemText} //Connecting itemText to the state variable from line 9
+          // Connecting itemText to the state variable from line 9
+          value={itemText}
           onChange={(event) => {
             // When a user types in a value to change the text box, update what they have
             //typed in into state
@@ -48,7 +58,23 @@ const App = () => {
         //but there aren't any items yet so this <li> doesn't show up at first
         // #10 Because the items array has our new items text in it, it will automagically
         //render a new li item for us
-        return <li key={index}>{item}</li>;
+        return (
+          <li
+            key={index}
+            style={{
+              textDecoration: item.done ? "line-through" : "",
+            }}
+          >
+            {item.taskName}{" "}
+            <button
+              onClick={() => {
+                markAsDone(index);
+              }}
+            >
+              Done
+            </button>
+          </li>
+        );
       })}
     </div>
   );
