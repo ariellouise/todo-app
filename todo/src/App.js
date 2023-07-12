@@ -10,7 +10,7 @@ const App = () => {
   const addItem = (event) => {
     // #6 Prevent the page from refreshing
     event.preventDefault();
-    //#7 Get the item text out of the element's cvalue in the form
+    //#7 Get the item text out of the element's value in the form
     const itemText = event.target.elements.task.value;
     //#8 We can't set items like a normal variable because it is a state variable.
     // Becuse of that we have to use the setItems functon from #2B.
