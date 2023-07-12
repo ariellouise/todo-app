@@ -13,10 +13,10 @@ const App = () => {
       <form onSubmit={addItem}>
         <label>New To Do Item: </label>
         <input type="text" name="task" />
-        <button type="submit">Add item</button>
+        <button type="submit">Add Item</button>
       </form>
-      {items.map((item) => {
-        return <li>{item}</li>;
+      {items.map((item, index) => {
+        return <li key={index}>{item}</li>;
       })}
     </div>
   );
